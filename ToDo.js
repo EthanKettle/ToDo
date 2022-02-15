@@ -85,3 +85,9 @@ function markTodoAsCompleted() {
 function removeAllTodosCompleted() {
 
 }
+
+function save() {
+    localStorage.setItem('currentList', JSON.stringify(currentList)); 
+    localStorage.setItem('lists', JSON.stringify(lists));
+   }
+   
