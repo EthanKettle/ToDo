@@ -7,30 +7,17 @@
     </head>
     <body>
         <div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-3">
-                        <h6>List</h6>
-                        <ul class="">
-                            <ul class="list-group">
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                        </ul>
-                        <div>
-                            <input id="new-list-name-input">
-                            <button class="btn btn-primary" onclick="addList()"></button>
-                           </div>
-                           
-                    </div>
-                    <div class="col-8">
-                        <h1>TO DO</h1>
-                        <ul class="">
-                            <ul class="list-group">
-                            <li class="list-group-item"><input for="checkbox"></li>
-                            <li class="list-group-item"><input for="checkbox"></li>
-                        </ul>
-                    </div>
-                </div>
+            <div> <!--left column has all the lists-->
+                <h2>To Do List</h2>
+                <input type="text" id="list-input-box" placeholder="Type New List Here...">
+                <button onclick="addList()">Add</button>
+                <div id="listHere"></div> <!--list list-->
+            </div>
+            <div> <!--Right column has all the todos of list-->
+                <h2 id="getListName"></h2>
+                <input type="text" id="todo-input-box" placeholder="Type New To Do Here...">
+                <button onclick="addTodo()">Add</button>
+                <div id="todosHere"></div> <!--list todsos-->
             </div>
         </div>
     </body>
