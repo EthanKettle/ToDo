@@ -1,48 +1,49 @@
-//lists
+import {Task} from "./task"
+import {List} from "./list"
 
-let list = {
-    1: {name: "shopping List",
-        todos: [
-            {
-                text: "Salt & Pepper",
-                complete: false
-            },
-            {
-                text: "1lbs of Mystery Meat",
-                complete: false
-            }
-        ]
-    },
-    2: {name: "Chores",
-        todos: [
-            {
-                text: "Dishes",
-                complete: false
-            },
-            {
-                text: "Clean Room",
-                complete: false
-            }
-        ]
-    },
-    3: {name: "TNT Ingredients",
-        todos: [
-            {
-                text: "Gun Powder",
-                complete: false
-            },
-            {
-                text: "Sand",
-                complete: false
-            }
-        ]
-    },
-        
+const itemsList = [];
+const itemsTodo = [];
+
+document.addEventListener('click', addList);
+document.addEventListener('click', addTodo);
+
+
+function addList() {
+    let myList = new List(document.getElementById("list-input").value);
+    const itemList = myList;
+    itemsList.push(itemList);
+    document.getElementById('list-input').value = '';
+    showList();
+
+};
+
+function showList () {
+    let listHTML ='';
+    itemsList.forEach((itemList) => {
+        listHTML+= `<li>${itemList}</li>`
+    });
+    document.getElementById('listHere').innerHTML = listHTML;
+
+};
+
+function addTodo() {
+    const itemTodo= document.getElementById("todo-input").value;
+    itemsTodo.push(itemTodo);
+    document.getElementById('todo-input').value = '';
+    showTodo();
+
 }
 
-let currentList = list[0];
+function showTodo () {
+    let todoHTML ='';
+    itemsTodo.forEach((itemTodo) => {
+        listHTML+= `<li>${itemTodo}</li>`
+    });
+    document.getElementById('todosHere').innerHTML = todoHTML;
 
-//render todos
+};
+
+/*render todos
 function render() {
     let listHtml = '<ul class="list-group">';
     list.forEach((lists) => {
@@ -62,7 +63,7 @@ function render() {
 
 function addList() {
     const name =
-    document.getElementById('list-input-box').value;
+    document.getElementById('list-input').value;
     if (name) {
         list.push();
         
@@ -70,20 +71,11 @@ function addList() {
 
 }
 
-//render lists
-function renderLists() {
-    let listHtml = '<ul>';
-    list.forEach((lists) => {
-        listHtml += `<li">${list.name}</li>`
-    });
-    listHtml += '</ul>';
-}
-
 
 // To Do List
 function addTodo() {
     const text =
-    document.getElementById('todo-input-box').value;
+    document.getElementById('todo-input').value;
     if (text) {
         currentList.todos.push({
             text: text,
@@ -114,4 +106,4 @@ function removeAllTodosCompleted() {
 function save() {
     localStorage.setItem('currentList', JSON.stringify(currentList)); 
     localStorage.setItem('lists', JSON.stringify(lists));
-}
+} */
