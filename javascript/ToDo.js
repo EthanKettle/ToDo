@@ -1,36 +1,68 @@
 import {Task} from "./task"
 import {List} from "./list"
 
-const itemsList = [];
-const itemsTodo = [];
+const lists = {
+    1: {
+      name: "Shopping list",
+      todos: [
+        {
+          text: 'bananas',
+          completed: false
+        },
+        {
+          text: '1 lbs ground turkey',
+          completed: false
+        }
+      ]
+    },
+};
+
+currentList = lists[0]
 
 document.addEventListener('click', addList);
 document.addEventListener('click', addTodo);
 
 
 function addList() {
-    let myList = new List(document.getElementById("list-input").value);
+    const text = document.getElementById('list-input').value;
+    if(text) {
+      list.push({
+        newList = new List(text)
+      })
+      showList();
+    }   
+    
+    /*let myList = new List(document.getElementById("list-input").value);
     const itemList = myList;
-    itemsList.push(itemList);
+    lists.push(itemList);
     document.getElementById('list-input').value = '';
-    showList();
+    */
 
 };
 
 function showList () {
-    let listHTML ='';
-    itemsList.forEach((itemList) => {
-        listHTML+= `<li>${itemList}</li>`
+    let listHtml = '';
+    list.forEach((lists) => {
+        listHtml += `<li class="list-group-items">${list.name}</li>`
     });
     document.getElementById('listHere').innerHTML = listHTML;
 
 };
 
 function addTodo() {
-    const itemTodo= document.getElementById("todo-input").value;
-    itemsTodo.push(itemTodo);
-    document.getElementById('todo-input').value = '';
-    showTodo();
+    const text = ocument.getElementById("todo-input").value;
+    if(text) {
+        currentList.todos.push({
+            newTodo = new Task(text)
+        })
+        showTodo();
+    }
+
+    
+    /*const itemTodo= document.getElementById("todo-input").value;
+    todo.push(itemTodo);
+    document.getElementById('todo-input').value = '';*/
+    
 
 }
 
@@ -62,8 +94,7 @@ function render() {
 //user
 
 function addList() {
-    const name =
-    document.getElementById('list-input').value;
+    const name = document.getElementById('list-input').value;
     if (name) {
         list.push();
         
@@ -102,8 +133,9 @@ function markTodoAsCompleted() {
 function removeAllTodosCompleted() {
 
 }
+*/
 
 function save() {
     localStorage.setItem('currentList', JSON.stringify(currentList)); 
     localStorage.setItem('lists', JSON.stringify(lists));
-} */
+} 
