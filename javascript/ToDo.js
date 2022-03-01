@@ -30,8 +30,8 @@ class Task {
 
 const ListKey = 'lists'
 
-let lists = returnList() || {
-    1: {
+let lists = [
+    {
       name: "Shopping list",
       todos: [
         {
@@ -43,8 +43,8 @@ let lists = returnList() || {
           completed: false
         }
       ]
-    },
-};
+    }
+];
 
 currentList = lists[0]
 
@@ -55,17 +55,26 @@ document.addEventListener('click', addTodo);
 function addList() {
     const text = document.getElementById('list-input').value;
     if(text) {
-      list.push({
-        newList = new List(text)
-      })
+      newList = new List(text)
+      lists.push(newList)
       showList();
     }
     save();
 };
 
+function addTodo() {
+    const text = document.getElementById("todo-input").value;
+    if(text) {
+        newTodo = new Task(text)
+        currentList.todos.push(newTodo)
+        showTodo();
+    }  
+    save();
+}
+
 function showList () {
     let listHtml = '';
-    list.forEach((lists) => {
+    lists.forEach((list) => {
         listHtml += `<li class="list-group-items">${list.name}</li> <button onclick=delete()></button>`
     });
     document.getElementById('listHere').innerHTML = listHtml;
@@ -73,21 +82,10 @@ function showList () {
 
 };
 
-function addTodo() {
-    const text = document.getElementById("todo-input").value;
-    if(text) {
-        currentList.todos.push({
-            newTodo = new Task(text)
-        })
-        showTodo();
-    }  
-    save();
-}
-
 function showTodo () {
     let todoHTML ='';
-    itemsTodo.forEach((itemTodo) => {
-        listHTML+= `<li class="list-group-items" onclick=markComplete()>${itemTodo}</li> <button onclick=edit()>Edit</button> <button onclick=delete()></button>`
+    lists.forEach((todos) => {
+        todoHTML+= `<li class="list-group-items" onclick=markComplete()>${todos}</li> <button onclick=edit()>Edit</button> <button onclick=delete()></button>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
@@ -96,17 +94,6 @@ function showTodo () {
 function edit () {
     
 }
-
-/*
-<button id="editTodo" onclick="editTodo()>Edit</button><button id="editStopTodo" onclick="editStopTodo()>Done</button>
-
-function editTodo() {
-    li.contentEditable = true;
-}
-
-function editStopTodo() {
-    li.contentEditable = false;
-}*/
 
 function save() {
     localStorage.setItem('ListKey', JSON.stringify(lists));
