@@ -30,51 +30,52 @@ function addList() {
         newList = new List(text)
       })
       showList();
-    }   
-    
-    /*let myList = new List(document.getElementById("list-input").value);
-    const itemList = myList;
-    lists.push(itemList);
-    document.getElementById('list-input').value = '';
-    */
-
+    }
 };
 
 function showList () {
     let listHtml = '';
     list.forEach((lists) => {
-        listHtml += `<li class="list-group-items">${list.name}</li>`
+        listHtml += `<li class="list-group-items">${list.name}</li><button id="editList" onclick="editList()>Edit</button><button id="editStopList" onclick="editStopList()>Done</button>`
     });
     document.getElementById('listHere').innerHTML = listHTML;
 
 };
 
 function addTodo() {
-    const text = ocument.getElementById("todo-input").value;
+    const text = document.getElementById("todo-input").value;
     if(text) {
         currentList.todos.push({
             newTodo = new Task(text)
         })
         showTodo();
-    }
-
-    
-    /*const itemTodo= document.getElementById("todo-input").value;
-    todo.push(itemTodo);
-    document.getElementById('todo-input').value = '';*/
-    
-
+    }  
 }
 
 function showTodo () {
     let todoHTML ='';
     itemsTodo.forEach((itemTodo) => {
-        listHTML+= `<li>${itemTodo}</li>`
+        listHTML+= `<li class="list-group-items">${itemTodo}</li><button id="editTodo" onclick="editTodo()>Edit</button><button id="editStopTodo" onclick="editStopTodo()>Done</button>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
 };
 
+function editTodo() {
+    li.contentEditable = true;
+}
+
+function editList() {
+    li.contentEditable = true;
+}
+
+function editStopTodo() {
+    li.contentEditable = false;
+}
+
+function editStopList() {
+    li.contentEditable = false;
+}
 /*render todos
 function render() {
     let listHtml = '<ul class="list-group">';
