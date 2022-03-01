@@ -36,7 +36,7 @@ function addList() {
 function showList () {
     let listHtml = '';
     list.forEach((lists) => {
-        listHtml += `<li class="list-group-items">${list.name}</li><button id="editList" onclick="editList()>Edit</button><button id="editStopList" onclick="editStopList()>Done</button>`
+        listHtml += `<li class="list-group-items">${list.name}</li>`
     });
     document.getElementById('listHere').innerHTML = listHTML;
 
@@ -55,11 +55,15 @@ function addTodo() {
 function showTodo () {
     let todoHTML ='';
     itemsTodo.forEach((itemTodo) => {
-        listHTML+= `<li class="list-group-items">${itemTodo}</li><button id="editTodo" onclick="editTodo()>Edit</button><button id="editStopTodo" onclick="editStopTodo()>Done</button>`
+        listHTML+= `<li class="list-group-items" onclick=markComplete()>${itemTodo}</li> <button onclick></button>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
 };
+
+/*
+<button id="editList" onclick="editList()>Edit</button><button id="editStopList" onclick="editStopList()>Done</button>
+<button id="editTodo" onclick="editTodo()>Edit</button><button id="editStopTodo" onclick="editStopTodo()>Done</button>
 
 function editTodo() {
     li.contentEditable = true;
@@ -75,66 +79,7 @@ function editStopTodo() {
 
 function editStopList() {
     li.contentEditable = false;
-}
-/*render todos
-function render() {
-    let listHtml = '<ul class="list-group">';
-    list.forEach((lists) => {
-        listHtml += `<li class="list-group-items">${list.name}</li>`
-    });
-    listHtml += '</ul>';
-    document.getElementById('lists').innerHTML = currentList.name;
-    document.getElementById('current-list-name').innerText = currentList.name;
-    let todosHtml = '<ul class="list-group-flush">';
-    currentList.todos.forEach((lists) => {
-        todosHtml += `<li class="list-group-items">${list.name}</li>`
-    });
-    document.getElementById('current-list-todos').innerHTML = todosHtml;
-}
-
-//user
-
-function addList() {
-    const name = document.getElementById('list-input').value;
-    if (name) {
-        list.push();
-        
-    }
-
-}
-
-
-// To Do List
-function addTodo() {
-    const text =
-    document.getElementById('todo-input').value;
-    if (text) {
-        currentList.todos.push({
-            text: text,
-            complete: false
-        })
-        render();
-    }
-}
-
-function removeList() {
-    document.getElementById('removeList');
-}
-
-function removeTodo() {
-    document.getElementById('removeToDo');
-}
-
-function markTodoAsCompleted() {
-    if (complete) {
-
-    };
-}
-
-function removeAllTodosCompleted() {
-
-}
-*/
+}*/
 
 function save() {
     localStorage.setItem('currentList', JSON.stringify(currentList)); 
