@@ -1,7 +1,36 @@
-import {Task} from "./task"
-import {List} from "./list"
+class List {
+    constructor(name) {
+        this.name = name;
+        this.task = [];
+    }
+    addTask(text) {
+        const newTask = new Task(text);
+        this.tasks.push(newtask);
+    }
+    removeTask(id) {
+        this.tasks = this.tasks.filter(task => task.id != id);
+    }
+    rename(name) {
+        this.name = name;
+    }
+}
 
-const lists = {
+class Task {
+    constructor(text) {
+        this.text = text;
+        this.completed = false;
+    }
+    editText(text) {
+        this.text = text;
+    }
+    markCompleted(completed) {
+        this.completed = completed;
+    }
+}
+
+const ListKey = 'lists'
+
+let lists = returnList() || {
     1: {
       name: "Shopping list",
       todos: [
@@ -31,14 +60,16 @@ function addList() {
       })
       showList();
     }
+    save();
 };
 
 function showList () {
     let listHtml = '';
     list.forEach((lists) => {
-        listHtml += `<li class="list-group-items">${list.name}</li>`
+        listHtml += `<li class="list-group-items">${list.name}</li> <button onclick=delete()></button>`
     });
-    document.getElementById('listHere').innerHTML = listHTML;
+    document.getElementById('listHere').innerHTML = listHtml;
+    showTodo ()
 
 };
 
@@ -50,38 +81,37 @@ function addTodo() {
         })
         showTodo();
     }  
+    save();
 }
 
 function showTodo () {
     let todoHTML ='';
     itemsTodo.forEach((itemTodo) => {
-        listHTML+= `<li class="list-group-items" onclick=markComplete()>${itemTodo}</li> <button onclick></button>`
+        listHTML+= `<li class="list-group-items" onclick=markComplete()>${itemTodo}</li> <button onclick=edit()>Edit</button> <button onclick=delete()></button>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
 };
 
+function edit () {
+    
+}
+
 /*
-<button id="editList" onclick="editList()>Edit</button><button id="editStopList" onclick="editStopList()>Done</button>
 <button id="editTodo" onclick="editTodo()>Edit</button><button id="editStopTodo" onclick="editStopTodo()>Done</button>
 
 function editTodo() {
     li.contentEditable = true;
 }
 
-function editList() {
-    li.contentEditable = true;
-}
-
 function editStopTodo() {
-    li.contentEditable = false;
-}
-
-function editStopList() {
     li.contentEditable = false;
 }*/
 
 function save() {
-    localStorage.setItem('currentList', JSON.stringify(currentList)); 
-    localStorage.setItem('lists', JSON.stringify(lists));
+    localStorage.setItem('ListKey', JSON.stringify(lists));
 } 
+
+function returnList() {
+    return JSON.parse(localStorage.getItem(ListKey))
+}
