@@ -1,7 +1,7 @@
 class List {
     constructor(name) {
         this.name = name;
-        this.task = [];
+        this.todos = [];
     }
     addTask(text) {
         const newTask = new Task(text);
@@ -30,7 +30,7 @@ class Task {
 
 const ListKey = 'lists'
 
-let lists = [
+let lists = returnList() || [
     {
       name: "Shopping list",
       todos: [
@@ -48,14 +48,11 @@ let lists = [
 
 currentList = lists[0]
 
-document.addEventListener('click', addList);
-document.addEventListener('click', addTodo);
-
 
 function addList() {
     const text = document.getElementById('list-input').value;
     if(text) {
-      newList = new List(text)
+      const newList = new List(text)
       lists.push(newList)
       showList();
     }
@@ -65,7 +62,7 @@ function addList() {
 function addTodo() {
     const text = document.getElementById("todo-input").value;
     if(text) {
-        newTodo = new Task(text)
+        const newTodo = new Task(text)
         currentList.todos.push(newTodo)
         showTodo();
     }  
@@ -74,22 +71,27 @@ function addTodo() {
 
 function showList () {
     let listHtml = '';
-    lists.forEach((list) => {
-        listHtml += `<li class="list-group-items">${list.name}</li> <button onclick=delete()></button>`
+    lists.forEach((list, index) => {
+        listHtml += `<li class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=delete()></button>`
     });
     document.getElementById('listHere').innerHTML = listHtml;
-    showTodo ()
+    showTodo ();
 
 };
 
 function showTodo () {
     let todoHTML ='';
-    lists.forEach((todos) => {
-        todoHTML+= `<li class="list-group-items" onclick=markComplete()>${todos}</li> <button onclick=edit()>Edit</button> <button onclick=delete()></button>`
+    currentList.todos.forEach((todo) => {
+        todoHTML+= `<li class="list-group-items" onclick=markComplete()>${todo.text}</li> <button onclick=edit()>Edit</button> <button onclick=delete()></button>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
 };
+
+function current (i) {
+    currentList = lists[i];
+    showTodo ();
+}
 
 function edit () {
     
