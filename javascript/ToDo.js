@@ -69,7 +69,7 @@ function addTodo() {
 function showList () {
     let listHtml = '';
     lists.forEach((list, index) => {
-        listHtml += `<span><li id="list${index}" class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=del(list${index})>Delete</button></span>`
+        listHtml += `<span><li id="list${index}" class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=delList()>Delete</button></span>`
     });
     document.getElementById('listHere').innerHTML = listHtml;
     
@@ -81,7 +81,7 @@ function showTodo () {
     let todoHTML ='';
     currentList.todos.forEach((todo, index) => {
         todoHTML+= `<span><li id="todo${index}" class="list-group-items" onclick=markComplete()>${todo.text}</li>
-        <button onclick=edit()>Edit</button><button onclick=close()>Done</button><button onclick=del(todo${index})>Delete</button></span>`
+        <button onclick=edit()>Edit</button><button onclick=close()>Done</button><button onclick=delTodo()>Delete</button></span>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
@@ -107,8 +107,16 @@ function close () {
     List.todos.contentEditable = false;
 };
 
-function del (x) {
-    currentList.todo.splice(x)
+function delTodo (x) {
+    currentList.todos.splice(x, 1)
+    console.log(currentList)
+    showTodo ();
+}
+
+function delList(x) {
+    list.splice(x, 1)
+    console.log(currentList)
+    showList ();
 }
 
 function save() {
