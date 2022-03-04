@@ -69,22 +69,29 @@ function addTodo() {
 function showList () {
     let listHtml = '';
     lists.forEach((list, index) => {
-        listHtml += `<li id="list" class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=del()>Delete</button>`
+        listHtml += `<span><li id="list${index}" class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=del(list${index})>Delete</button></span>`
     });
     document.getElementById('listHere').innerHTML = listHtml;
+    
     showTodo ();
 
 };
 
 function showTodo () {
     let todoHTML ='';
-    currentList.todos.forEach((todo) => {
-        todoHTML+= `<li id="todo" class="list-group-items" onclick=markComplete()>${todo.text}</li>
-        <button onclick=edit()>Edit</button><button onclick=close()>Done</button><button onclick=del()>Delete</button>`
+    currentList.todos.forEach((todo, index) => {
+        todoHTML+= `<span><li id="todo${index}" class="list-group-items" onclick=markComplete()>${todo.text}</li>
+        <button onclick=edit()>Edit</button><button onclick=close()>Done</button><button onclick=del(todo${index})>Delete</button></span>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
 };
+
+// function topStuff () {
+// let topHtml = '';
+// let topHtml = '${list.name}';
+// document.getElementById("getListName").innerHTML = topHtml;
+// };
 
 function current (i) {
     currentList = lists[i];
@@ -100,9 +107,9 @@ function close () {
     List.todos.contentEditable = false;
 };
 
-// function del () {
-//     delete ;
-// }
+function del (x) {
+    currentList.todo.splice(x)
+}
 
 function save() {
     localStorage.setItem('ListKey', JSON.stringify(lists));

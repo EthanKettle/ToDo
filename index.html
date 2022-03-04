@@ -4,24 +4,31 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script type="text/javascript" src="javascript/ToDo.js"></script>
+        <link rel="stylesheet" src="ToDo.css">
     </head>
     <body onload="showList()">
-        <div class="container-fluid">
-            <div class="col-3"> <!--left column has all the lists-->
-                <h2>To Do List</h2>
-                <input type="text" id="list-input" placeholder="Type New List Here...">
-                <button onclick="addList()">Add</button>
-                <div>
-                    <ul class="list-group" id="listHere">
-                        
-                    </ul>
-                </div> <!--list list-->
-            </div>
-            <div class="col-8"> <!--Right column has all the todos of list-->
-                <h2 id="getListName"></h2>
-                <input type="text" id="todo-input" placeholder="Type New To Do Here...">
-                <button onclick="addTodo()">Add</button>
-                <div id="todosHere"></div> <!--list todsos-->
+        <div class="container-fluid addPad">
+            <div class="row">
+                <div class="col-3"> <!--left column has all the lists-->
+                    <h2>To Do List</h2>
+                    <input type="text" id="list-input" placeholder="Type New List Here...">
+                    <button onclick="addList()">Add</button>
+                    <div>
+                        <ul class="list-group" id="listHere">
+                            
+                        </ul>
+                    </div> <!--list list-->
+                </div>
+                <div class="col-8"> <!--Right column has all the todos of list-->
+                    <h2 id="getListName"></h2>
+                    <input type="text" id="todo-input" placeholder="Type New To Do Here...">
+                    <button onclick="addTodo()">Add</button>
+                    <div>
+                        <ul class="list-group" id="todosHere">
+                            
+                        </ul>
+                    </div> <!--list todsos-->
+                </div>
             </div>
         </div>
     </body>
