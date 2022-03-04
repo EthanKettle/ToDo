@@ -10,9 +10,6 @@ class List {
     removeTask(id) {
         this.tasks = this.tasks.filter(task => task.id != id);
     }
-    rename(name) {
-        this.name = name;
-    }
 }
 
 class Task {
@@ -72,7 +69,7 @@ function addTodo() {
 function showList () {
     let listHtml = '';
     lists.forEach((list, index) => {
-        listHtml += `<li class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=delete()></button>`
+        listHtml += `<li id="list" class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=del()>Delete</button>`
     });
     document.getElementById('listHere').innerHTML = listHtml;
     showTodo ();
@@ -82,7 +79,8 @@ function showList () {
 function showTodo () {
     let todoHTML ='';
     currentList.todos.forEach((todo) => {
-        todoHTML+= `<li class="list-group-items" onclick=markComplete()>${todo.text}</li> <button onclick=edit()>Edit</button> <button onclick=delete()></button>`
+        todoHTML+= `<li id="todo" class="list-group-items" onclick=markComplete()>${todo.text}</li>
+        <button onclick=edit()>Edit</button><button onclick=close()>Done</button><button onclick=del()>Delete</button>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
@@ -94,8 +92,17 @@ function current (i) {
 }
 
 function edit () {
-    
-}
+    List.todos.contentEditable = true;
+    Task.editText();
+};
+
+function close () {
+    List.todos.contentEditable = false;
+};
+
+// function del () {
+//     delete ;
+// }
 
 function save() {
     localStorage.setItem('ListKey', JSON.stringify(lists));
