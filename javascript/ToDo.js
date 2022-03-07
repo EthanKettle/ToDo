@@ -87,12 +87,6 @@ function showTodo () {
 
 };
 
-// function topStuff () {
-// let topHtml = '';
-// let topHtml = '${list.name}';
-// document.getElementById("getListName").innerHTML = topHtml;
-// };
-
 function current (i) {
     currentList = lists[i];
     showTodo ();
