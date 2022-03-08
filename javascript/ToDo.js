@@ -69,7 +69,7 @@ function addTodo() {
 function showList () {
     let listHtml = '';
     lists.forEach((list, index) => {
-        listHtml += `<span><li id="list${index}" class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=delList()>Delete</button></span>`
+        listHtml += `<span><li class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=delList()>Delete</button></span>`
     });
     document.getElementById('listHere').innerHTML = listHtml;
     
@@ -80,8 +80,7 @@ function showList () {
 function showTodo () {
     let todoHTML ='';
     currentList.todos.forEach((todo, index) => {
-        todoHTML+= `<span><li id="todo${index}" class="list-group-items" onclick=markComplete()>${todo.text}</li>
-        <button onclick=edit()>Edit</button><button onclick=close()>Done</button><button onclick=delTodo()>Delete</button></span>`
+        todoHTML+= `<span><li id="todo-li-${index}" class="list-group-items" onclick=edit()>${todo.text}</li> <button onclick=markComplete()>Mark Complete</button><button onclick=delTodo(${index})>Delete</button></span>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
@@ -92,24 +91,28 @@ function current (i) {
     showTodo ();
 }
 
-function edit () {
-    List.todos.contentEditable = true;
-    Task.editText();
-};
-
-function close () {
-    List.todos.contentEditable = false;
+function edit () { 
+    const text = document.getElementById('todo-li-${index}').value;
+    if(text) {
+      editText(text)
+      showTodo();
+    }
+    save();
 };
 
 function delTodo (x) {
     currentList.todos.splice(x, 1)
-    console.log(currentList)
     showTodo ();
 }
 
 function delList(x) {
-    list.splice(x, 1)
-    console.log(currentList)
+    del = lists[x]
+    for (let i = 0; i < del.todos.length; i++) {
+        del.todos.splice(i, 1)
+    }
+    lists.splice(x, 1)
+    
+    
     showList ();
 }
 
