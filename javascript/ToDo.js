@@ -80,7 +80,7 @@ function showList () {
 function showTodo () {
     let todoHTML ='';
     currentList.todos.forEach((todo, index) => {
-        todoHTML+= `<span><li id="todo-li-${index}" class="list-group-items" onclick=edit() contenteditable="true">${todo.text}</li> <button onclick=markComplete()>Mark Complete</button><button onclick=delTodo(${index})>Delete</button></span>`
+        todoHTML+= `<span><li id="todo-li-${index}" class="list-group-items" contenteditable="true">${todo.text}</li><button onclick=edit()>Save</button><button onclick=markComplete()>Mark Complete</button><button onclick=delTodo(${index})>Delete</button></span>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
