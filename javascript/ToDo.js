@@ -80,7 +80,7 @@ function showList () {
 function showTodo () {
     let todoHTML ='';
     currentList.todos.forEach((todo, index) => {
-        todoHTML+= `<span><li id="todo-li-${index}" class="list-group-items" onclick=edit()>${todo.text}</li> <button onclick=markComplete()>Mark Complete</button><button onclick=delTodo(${index})>Delete</button></span>`
+        todoHTML+= `<span><li id="todo-li-${index}" class="list-group-items" onclick=edit() contenteditable="true">${todo.text}</li> <button onclick=markComplete()>Mark Complete</button><button onclick=delTodo(${index})>Delete</button></span>`
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
@@ -112,13 +112,7 @@ function delTodo (x) {
 }
 
 function delList(x) {
-    del = lists[x]
-    for (let i = 0; i < del.todos.length; i++) {
-        del.todos.splice(i, 1)
-    }
     lists.splice(x, 1)
-    
-    
     showList ();
 }
 
