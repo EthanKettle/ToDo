@@ -94,11 +94,17 @@ function current (i) {
 function edit () { 
     const text = document.getElementById('todo-li-${index}').value;
     if(text) {
-      editText(text)
+      Task.editText(text)
       showTodo();
     }
     save();
 };
+
+
+function markComplete () {
+    
+    document.getElementById('todo-li-${index}').HTML = `class="complete"`;
+}
 
 function delTodo (x) {
     currentList.todos.splice(x, 1)
