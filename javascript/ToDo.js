@@ -5,10 +5,10 @@ class List {
     }
     addTask(text) {
         const newTask = new Task(text);
-        this.tasks.push(newtask);
+        this.tasks.push(newTask);
     }
-    removeTask(id) {
-        this.tasks = this.tasks.filter(task => task.id != id);
+    editTask(text) {
+        this.text = text;
     }
 }
 
@@ -80,7 +80,7 @@ function showList () {
 function showTodo () {
     let todoHTML ='';
     currentList.todos.forEach((todo, index) => {
-        todoHTML+= `<span><li id="todo-li-${index}" class="list-group-items" contenteditable="true">${todo.text}</li><button onclick=edit()>Save</button><button onclick=markComplete()>Mark Complete</button><button onclick=delTodo(${index})>Delete</button></span>`
+        todoHTML += `<li class="list-group-items"><span contenteditable="true" id="todo-li-${index}">${todo.text}</span><button onclick="edit('todo-li-${index}', ${index})">Save</button><button onclick=markComplete()>Mark Complete</button><button onclick="delTodo(${index})">Delete</button></li>`;
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
@@ -91,18 +91,12 @@ function current (i) {
     showTodo ();
 }
 
-function edit () { 
-    const text = document.getElementById('todo-li-${index}').value;
-    if(text) {
-      Task.editText(text)
-      showTodo();
-    }
-    save();
+function edit(id,x) {
+    currentList.todos.splice(x, 1, document.getElementById(id));
 };
 
 
 function markComplete () {
-    
     document.getElementById('todo-li-${index}').HTML = `class="complete"`;
 }
 
