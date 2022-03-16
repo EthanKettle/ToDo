@@ -69,7 +69,7 @@ function addTodo() {
 function showList () {
     let listHtml = '';
     lists.forEach((list, index) => {
-        listHtml += `<span><li class="list-group-items" onclick="current(${index})">${list.name}</li> <button onclick=delList()>Delete</button></span>`
+        listHtml += `<li class="list-group-items" onclick="current(${index})">${list.name}<button onclick=delList()><img src="Images/xIcon.png"></button></li>`
     });
     document.getElementById('listHere').innerHTML = listHtml;
     
@@ -80,7 +80,7 @@ function showList () {
 function showTodo () {
     let todoHTML ='';
     currentList.todos.forEach((todo, index) => {
-        todoHTML += `<li class="list-group-items"><span contenteditable="true" id="todo-li-${index}">${todo.text}</span><button onclick="edit('todo-li-${index}', ${index})">Save</button><button onclick=markComplete()>Mark Complete</button><button onclick="delTodo(${index})">Delete</button></li>`;
+        todoHTML += `<li class="list-group-items complete-${todo.completed}"><span contenteditable="true" id="todo-li-${index}">${todo.text}</span><button onclick="edit('todo-li-${index}', ${index})">Save</button><button onclick="delTodo(${index})"><img src="Images/xIcon.png"></button><input onclick="mark(${index},mark-${index})" type="checkbox" id='mark-${index}'></li>`;
     });
     document.getElementById('todosHere').innerHTML = todoHTML;
 
@@ -92,13 +92,19 @@ function current (i) {
 }
 
 function edit(id,x) {
-    currentList.todos.splice(x, 1, document.getElementById(id));
+    currentList.todos[x].text = (document.getElementById(id).textContent);
+    showTodo ();
 };
 
-
-function markComplete () {
-    document.getElementById('todo-li-${index}').HTML = `class="complete"`;
-}
+function mark(x,id) {
+    let mark = document.getElementById(id);
+    if (mark == true) {
+        currentList.todos[x].completed = true;
+    } else {
+        currentList.todos[x].completed = false;
+    };
+    showTodo ();
+};
 
 function delTodo (x) {
     currentList.todos.splice(x, 1)

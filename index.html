@@ -9,10 +9,9 @@
     <body onload="showList()">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3"> <!--left column has all the lists-->
+                <div class="col-4"> <!--left column has all the lists-->
                     <div class="redBox"><h2>Your Lists</h2>
-                    <input type="text" id="list-input" placeholder="Type New List Here..." >
-                    <button onclick="addList()">Add</button></div>
+                    <input type="text" id="list-input" placeholder="Type New List Here..."><button onclick="addList()">Add</button></div>
                     <div>
                         <ul class="list-group" id="listHere">
                             
@@ -20,9 +19,8 @@
                     </div> <!--list list-->
                 </div>
                 <div class="col-8"> <!--Right column has all the todos of list-->
-                    <h2 id="getListName">To Dos</h2>
-                    <input type="text" id="todo-input" placeholder="Type New To Do Here...">
-                    <button onclick="addTodo()">Add</button>
+                    <div class="redBox"><h2 id="getListName">To Dos</h2>
+                    <input type="text" id="todo-input" placeholder="Type New To Do Here..."><button onclick="addTodo()">Add</button></div>
                     <div>
                         <ul class="list-group" id="todosHere">
                             

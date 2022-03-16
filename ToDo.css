@@ -1,6 +1,18 @@
+.greyHere {
+  background-color: #555555;
+}
+
 .redBox {
   background-color: red;
   padding: 5px;
+}
+
+.redBox button {
+  background: lightgrey;
+}
+
+ul {
+  list-style-type: none;
 }
 
 ul li {
@@ -11,4 +23,21 @@ ul li {
 
 ul li:nth-child(odd) {
   background: #dbdbdb;
+}
+
+ul li.complete-true {
+  background: #868686;
+}
+
+button {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+
+}
+img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
 }
